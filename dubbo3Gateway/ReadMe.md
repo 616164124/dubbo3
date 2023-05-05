@@ -1,1 +1,2 @@
 gateway项目中的yml文件不能有注释和中文。否则启动不起来
+暂时无法配合NewsService和UserService一起使用

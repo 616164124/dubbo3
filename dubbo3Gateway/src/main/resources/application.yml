@@ -11,14 +11,7 @@ spring:
           enabled: true
       routes:
         - id: b_routes
-          uri: lb://userService
+          uri: lb://localhost:40000
           predicates:
             - Path=/news/**
-          filters:
-            - StripPrefix=1
-        - id: a_routes
-          uri: lb://user
-          predicates:
-            - Path=/user/**
-          filters:
-            - StripPrefix=1
+            - Method=GET

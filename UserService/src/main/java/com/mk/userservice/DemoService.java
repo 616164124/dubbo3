@@ -19,6 +19,7 @@ public class DemoService implements DubboService01 {
 
     @Override
     public WebResult dubboService01(BaseBean bean) {
+        log.info("userService dubboService01");
         demoService.demo01();
         return new WebResult("成功！！！");
     }

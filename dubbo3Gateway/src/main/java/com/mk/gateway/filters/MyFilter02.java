@@ -23,7 +23,6 @@ import java.nio.charset.StandardCharsets;
 
 /**
  * 对返回值进行过滤 （看情况把过滤器放在合适的位置用返回的order方法来进行操作） order返回值小于-1
- *
  */
 @Component
 public class MyFilter02 implements GlobalFilter, Ordered {
@@ -32,7 +31,7 @@ public class MyFilter02 implements GlobalFilter, Ordered {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        log.info("*********************自定义全局过滤器被执行 MyFilter01**********************");
+        log.info("*********************自定义全局过滤器被执行 MyFilter02**********************");
         ServerHttpResponse originalResponse = exchange.getResponse();
         DataBufferFactory bufferFactory = originalResponse.bufferFactory();
         ServerHttpResponseDecorator decoratedResponse = new ServerHttpResponseDecorator(originalResponse) {
@@ -49,13 +48,13 @@ public class MyFilter02 implements GlobalFilter, Ordered {
 
                         /****************这部分可以对返回值进行修改*********************/
                         String s = new String(content, Charset.forName("UTF-8"));
-                        log.info("sssssssssssss===>"+s);
+                        log.info("sssssssssssss===>" + s);
                         ServiceResult serviceResult = JSON.parseObject(s, ServiceResult.class);
                         if ("000000".equals(serviceResult.getCode())) {
                             serviceResult.setMsg("kkk");
                         }
-                        s=serviceResult.toString();
-                        serviceResult=null;
+                        s = serviceResult.toString();
+                        serviceResult = null;
                         //TODO，s就是response的值，想修改、查看就随意而为了
                         byte[] uppedContent = new String(s.getBytes(StandardCharsets.UTF_8), Charset.forName("UTF-8")).getBytes();
                         /********************************************************/

@@ -28,8 +28,8 @@ public class MyFilter01 implements GlobalFilter, Ordered {
         ServerHttpResponse response = exchange.getResponse();
         String path = request.getPath().toString();
         //
-        if(path.contains("/login/register/common")){
-        return chain.filter(exchange);
+        if (path.contains("/login/register/common")) {
+            return chain.filter(exchange);
         }
 
         //重定向等等操作
