@@ -7,13 +7,20 @@ import com.mk.result.BaseBean;
 import com.mk.result.WebResult;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboReference;
+import org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
 
 @Service
 @Slf4j
 public class NewsServiceImpl implements NewsService {
 
-    @DubboReference(retries = 1,timeout = 4_000,mock = "",loadbalance = ""  )
+    @Resource
+    private ApplicationContext applicationContext;
+
+    @DubboReference(retries = 1,timeout = 4_000,mock = "",loadbalance ="random"   )
     private DubboService01 dubboService01;
 
     @DubboReference
@@ -25,6 +32,8 @@ public class NewsServiceImpl implements NewsService {
         baseBean.setObject("");
         baseBean.setType("test01");
         log.info("dubboService01=========>前半部分");
+        int port = ((ServletWebServerApplicationContext) applicationContext).getWebServer().getPort();
+        log.info(" userService port :{}",port );
         WebResult webResult = dubboService01.dubboService01(baseBean);
         return webResult;
     }
