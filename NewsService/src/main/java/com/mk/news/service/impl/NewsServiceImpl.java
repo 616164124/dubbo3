@@ -12,6 +12,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Random;
+import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Service
 @Slf4j
@@ -20,7 +23,7 @@ public class NewsServiceImpl implements NewsService {
     @Resource
     private ApplicationContext applicationContext;
 
-    @DubboReference(retries = 1,timeout = 4_000,mock = "",loadbalance ="random"   )
+    @DubboReference(retries = 1,timeout = 4_000,mock = "",loadbalance ="random" ,version = "1.0")
     private DubboService01 dubboService01;
 
     @DubboReference
@@ -30,7 +33,7 @@ public class NewsServiceImpl implements NewsService {
     public WebResult news01() {
         BaseBean baseBean = new BaseBean();
         baseBean.setObject("");
-        baseBean.setType("test01");
+        baseBean.setType(""+ UUID.randomUUID());
         log.info("dubboService01=========>前半部分");
         int port = ((ServletWebServerApplicationContext) applicationContext).getWebServer().getPort();
         log.info(" userService port :{}",port );

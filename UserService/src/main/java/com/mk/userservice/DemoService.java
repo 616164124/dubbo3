@@ -5,9 +5,10 @@ import com.mk.result.BaseBean;
 import com.mk.result.WebResult;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboService;
+import org.slf4j.MDC;
 
 
-@DubboService
+@DubboService(version = "1.0")
 @Slf4j
 public class DemoService implements DubboService01 {
 
@@ -19,6 +20,7 @@ public class DemoService implements DubboService01 {
 
     @Override
     public WebResult dubboService01(BaseBean bean) {
+        MDC.put("traceId", bean.getType());
         log.info("userService dubboService01");
         demoService.demo01();
         return new WebResult("成功！！！");

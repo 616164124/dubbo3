@@ -3,6 +3,7 @@ package com.mk.userservice.service.impl;
 import com.mk.result.WebResult;
 import com.mk.userservice.service.DemoService;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.MDC;
 import org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,7 @@ public class DemoServiceImpl implements DemoService {
         int port = ((ServletWebServerApplicationContext) applicationContext).getWebServer().getPort();
         log.info(" userService port :{}",port );
 
-        log.info("DemoServiceImpl===============demo01");
+        log.info("DemoServiceImpl===============demo01"+ MDC.get("traceId"));
         return new WebResult();
     }
 

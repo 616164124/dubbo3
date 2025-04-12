@@ -1,0 +1,2 @@
+filter01=com.mk.userservice.dubbo.filter.DubboFilter01
+filter02=com.mk.userservice.dubbo.filter.DubboFilter02
