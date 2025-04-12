@@ -22,7 +22,7 @@
         <dependency>
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo-spring-boot-starter</artifactId>
-            <version>3.1.5</version>
+            <version>3.2.17</version>
         </dependency>
 <!--        <dependency>-->
 <!--            <groupId>org.apache.dubbo</groupId>-->
@@ -42,12 +42,12 @@
 <!--            <artifactId>dubbo</artifactId>-->
 <!--            <version>3.1.5</version>-->
 <!--        </dependency>-->
+
         <dependency>
             <groupId>com.alibaba.nacos</groupId>
             <artifactId>nacos-client</artifactId>
             <version>2.1.0</version>
         </dependency>
-
 
 
 

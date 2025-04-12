@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://dubbo.apache.org/schema/dubbo
+                           http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+
+    <!-- 配置注册中心（Zookeeper） -->
+<!--    <dubbo:registry id="registry" address="zookeeper://127.0.0.1:2181"/>-->
+
+    <!-- 配置配置中心（File） -->
+<!--    <dubbo:config-center id="configCenter" address="file:///path/to/config"/>-->
+
+    <!-- 配置服务提供者 -->
+<!--    <dubbo:service interface="com.example.service.DemoService"-->
+<!--                   ref="demoServiceImpl"-->
+<!--                   protocol="dubbo"-->
+<!--                   port="20880"-->
+<!--                   timeout="3000">-->
+<!--        &lt;!&ndash; 配置 Filter &ndash;&gt;-->
+<!--        <dubbo:filter ref="myFilter"/>-->
+<!--    </dubbo:service>-->
+
+    <!-- 配置服务消费者 -->
+<!--    <dubbo:reference id="demoService" interface="com.mk.DubboService01">-->
+<!--        &lt;!&ndash; 配置 Filter &ndash;&gt;-->
+<!--        <dubbo:filter ref="myFilter"/>-->
+<!--    </dubbo:reference>-->
+
+    <!-- 定义 Filter 实例 -->
+    <bean id="myFilter" class="com.mk.userservice.dubbo.filter.DubboFilter01"/>
+
+    <dubbo:service interface="com.mk.userservice.service.DemoService"  filter="filter01"/>
+    <!-- 定义服务实现类 -->
+<!--    <bean id="demoServiceImpl" class="com.example.service.impl.DemoServiceImpl"/>-->
+
+    <!-- 扫描包 -->
+<!--    <context:component-scan base-package="com.example"/>-->
+</beans>
